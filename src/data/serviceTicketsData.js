@@ -18,5 +18,5 @@ fetch(`${_apiUrl}`, {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  })
+  }).then(r => r.json());
 };

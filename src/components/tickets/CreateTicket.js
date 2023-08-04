@@ -6,7 +6,6 @@ import { getEmployees } from '../../data/employeeData';
 import { createServiceTicket } from '../../data/serviceTicketsData';
 
 const initialState = {
-  Id: '',
   CustomerId: 0,
   EmployeeId: 0,
   Description: '',
@@ -33,8 +32,7 @@ export default function CreateTicket() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.warn("E: ", e.target.value);
-    setFormInput((prev) => ({
+     setFormInput((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -43,13 +41,12 @@ export default function CreateTicket() {
   const handleSubmit = (e) => {
     console.warn(e);
     e.preventDefault();
-    const payload = { ...formInput, Emergency: {emergency} };
+    const payload = { ...formInput, Emergency: emergency };
     console.warn("Payload: ", payload);
-    //createServiceTicket(payload);
+    createServiceTicket(payload);
   }
 
    const handleCheckBox = (e) => {
-    console.warn("checkbox: ", e.target);
     setEmergency(e.target.checked);
   }
 
@@ -63,7 +60,7 @@ export default function CreateTicket() {
      aria-label="select customer"
      name="CustomerId"
      onChange={handleChange}
-     value={formInput.CustomerId}>
+     value={parseInt(formInput.CustomerId)}>
       <option value="">Select Customer</option>
           {
             customers.map((customer) => (
@@ -82,7 +79,7 @@ export default function CreateTicket() {
      aria-label="select customer"
      name="EmployeeId"
      onChange={handleChange}
-     value={formInput.EmployeeId}>
+     value={parseInt(formInput.EmployeeId)}>
       <option value="">Select Employee</option>
           {
             employees.map((employee) => (
