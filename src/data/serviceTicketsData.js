@@ -20,3 +20,13 @@ fetch(`${_apiUrl}`, {
     body: JSON.stringify(payload),
   }).then(r => r.json());
 };
+
+
+//export a function here that DELETE a ticket by id
+export const deleteTicketById = (id) => {
+  
+  return fetch(`${_apiUrl}/${id}`, {
+    mode: 'no-cors',
+    method: 'DELETE'
+  }).then((r) => r.json());
+};
